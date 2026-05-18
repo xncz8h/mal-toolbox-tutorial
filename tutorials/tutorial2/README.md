@@ -49,8 +49,22 @@ Once you have specified and understand the Meta Attack Language chosen, you can 
 This section will cover how to convert your infrastructure to MAL, as well as actually implementing the code to create such a model.
 
 ### Architecture to MAL
+Before starting to model using MAL, it is important to onderstand what is and what is not possible using the chosen language.
+For our first use case, we want to model an asset which hosts a SSH server and is connected to the network.
+Besides that, the operating system has an vulnerability and there is a user who has admin rights on it, as well as normal user rights on the SSH server.
 
+To translate such a scenario to CoreLang, we can define it by saying that a machine consists of some hardware and an operating system. On this operating system there can be multiple applications. Both the operating system and any application can have a vulnerability.
+
+An overview of this model is shown below.
+![corelang example single model](./resources/corelang_example_model_one_assets.drawio.svg)
+
+
+A more complex model with multiple assets is shown below, with a second asset.
+![corelang example double model](./resources/corelang_example_model_two_assets.drawio.svg)
 
 ### Architecture to Model
-Keep this in mind when creating your model.
-Finally, it is important to keep in mind that **when adding an association between a node, the reverse association will automatically be added**.
+```Python
+language_graph = LanguageGraph.from_mar_archive(language_path)
+        model = Model("Tutorial2 Model", language_graph)
+```
+It is important to keep in mind that **when adding an association between a node, the reverse association will automatically be added**.
